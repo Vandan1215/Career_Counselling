@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<h1>Career Recommendation Form</h1>
+<p>Let's find your best career match!</p>
+
+<form action="/career/recommendations" method="POST">
+  <label>Interests:</label>
+  <input type="text" name="interests" placeholder="e.g. technology, business" required />
+
+  <label>Strengths:</label>
+  <input type="text" name="strengths" placeholder="e.g. analytical thinking, creativity" required />
+
+  <button type="submit">Get Recommendations</button>
+</form>
+
+<%- include('partials/footer') %>

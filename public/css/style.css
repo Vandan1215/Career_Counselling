@@ -1,0 +1,272 @@
+/* 🌑 Dark Theme for Career Counseling App */
+
+/* Give priority to custom inputs */
+input, select, textarea {
+  all: unset;
+  display: block;
+}
+
+
+/* Body Styling */
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1e293b, #0f172a); /* dark slate gradient */
+  color: #e2e8f0; /* light text */
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Main Form Container */
+.form-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  background: #1e293b; /* dark card background */
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Header */
+h1 {
+  color: #3b82f6;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.intro-text {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #cbd5e1;
+}
+
+/* Section Headings */
+.section-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #60a5fa;
+  margin: 1.5rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-heading::before {
+  content: attr(data-emoji);
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.section-heading:hover::before {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* Card styling */
+.card {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Inputs and Selects */
+.form-control,
+.form-select {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control::placeholder,
+.form-select::placeholder {
+  color: #94a3b8;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.4);
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Textareas */
+textarea {
+  resize: vertical;
+}
+
+/* Submit Button */
+.btn-submit {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  margin-top: 1.5rem;
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.35);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: #94a3b8;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.2rem;
+  }
+
+  .section-heading {
+    font-size: 1.1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-control,
+  .form-select,
+  textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+/* Footer Styling */
+.app-footer {
+  text-align: center;
+  color: #94a3b8;
+  background: transparent;
+  font-size: 0.9rem;
+}
+
+.footer-divider {
+  border-color: #334155;
+  margin: 1rem auto;
+  width: 100%;
+}
+
+.footer-text {
+  margin: 0;
+  padding: 0;
+  color: #94a3b8;
+}
+
+
+
+
+/* 🌙 Universal Input Styling for Dark Theme */
+
+/* Applies to ALL inputs, selects, textareas */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  background-color: #1e293b; /* dark navy */
+  color: #f8fafc; /* light text */
+  border: 1px solid #475569; /* slate border */
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: none;
+}
+
+/* On focus: glow effect */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #3b82f6; /* blue */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8; /* lighter slate */
+  font-size: 0.9rem;
+}
+
+/* Consistent label style */
+.form-label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #3b82f6; /* blue accent for dark theme */
+  transform: scale(1.15);
+  margin-right: 0.5rem;
+}
+
+
+

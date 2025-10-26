@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+
+<h2>Your Career Recommendations</h2>
+
+<% if (recommendations && recommendations.length > 0) { %>
+  <ul>
+    <% recommendations.forEach(r => { %>
+      <li>
+        <h3><%= r.title %></h3>
+        <p><%= r.description %></p>
+        <strong>Path:</strong> <%= r.path %>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No recommendations found. Try again!</p>
+<% } %>
+
+<a href="/career">Try Again</a>
+
+<%- include('partials/footer') %>
