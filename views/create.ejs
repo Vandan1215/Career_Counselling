@@ -1,254 +1,556 @@
 <%- include('partials/header') %>
 
+<style>
+  .hidden { display: none !important; }
+  .section-heading::before {
+    content: attr(data-emoji) " ";
+  }
+  .form-hint { font-size: 0.9rem; color: #6c757d; }
+  .entry-card {
+    padding: 12px;
+    border: 1px dashed #ced4da;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: #fafafa;
+  }
+  .btn-link-danger { color: #dc3545; text-decoration: none; }
+  .btn-link-danger:hover { text-decoration: underline; }
+</style>
+
 <div class="container form-container">
   <h1>Career Counseling App</h1>
   <p class="intro-text">Answer the questions below to get your personalized career recommendations.</p>
+
   <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-10">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <form action="/career/recommendations" method="POST" class="needs-validation" novalidate>
 
-      
-      <form action="/career/recommendations" method="POST" class="needs-validation" novalidate>
-        <!-- 🧍‍♂️ 1. Personal Information -->
+          <!-- 🧍‍♂️ 1. Personal Information -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🧍‍♂️">1. Personal Information</h2>
 
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="🧍‍♂️">1. Personal Information</h2>
-
-            <div class="mb-3">
-              <label for="name" class="form-label">Full Name (optional)</label>
-              <input type="text" class="form-control" id="name" name="name" />
-            </div>
-
-            <div class="mb-3">
-              <label for="age" class="form-label">Age / Date of Birth</label>
-              <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required />
-            </div>
-
-            <div class="mb-3">
-              <label for="gender" class="form-label">Gender (optional)</label>
-              <select class="form-select" id="gender" name="gender">
-                <option value="">Select</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="education" class="form-label">Education Level</label>
-              <select class="form-select" id="education" name="education" required>
-                <option>10th</option>
-                <option>12th</option>
-                <option>Graduate</option>
-                <option>Postgraduate</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="stream" class="form-label">Current Stream / Field of Study</label>
-              <input type="text" class="form-control" id="stream" name="stream" placeholder="e.g., Science, Commerce, Arts" required />
-            </div>
-
-            <div class="mb-3">
-              <label for="location" class="form-label">Location / Country</label>
-              <input type="text" class="form-control" id="location" name="location" placeholder="e.g., India" required />
-            </div>
-          </div>
-        </div>
-
-        <!-- 🎯 2. Career Interests -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="🎯">2. Career Interests</h2>
-
-            <div class="mb-3">
-              <label for="subjects" class="form-label">Subjects you enjoy the most</label>
-              <input type="text" class="form-control" id="subjects" name="subjects" placeholder="e.g., Math, Physics, Economics" />
-            </div>
-
-            <div class="mb-3">
-              <label for="workType" class="form-label">Preferred work type</label>
-              <select class="form-select" id="workType" name="workType">
-                <option>Desk Job</option>
-                <option>Field Work</option>
-                <option>Teaching</option>
-                <option>Creative Work</option>
-                <option>Technical</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="industries" class="form-label">Industries you find interesting</label>
-              <input type="text" class="form-control" id="industries" name="industries" placeholder="e.g., Technology, Healthcare" />
-            </div>
-
-            <div class="mb-3">
-              <label for="hobbies" class="form-label">Hobbies / Extracurricular Interests</label>
-              <input type="text" class="form-control" id="hobbies" name="hobbies" />
-            </div>
-
-            <div class="mb-3">
-              <label for="entrepreneurship" class="form-label">Interest in Entrepreneurship (1–5)</label>
-              <input type="number" class="form-control" id="entrepreneurship" name="entrepreneurship" min="1" max="5" />
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Full Name (optional)</label>
+                  <input type="text" class="form-control" id="name" name="name" />
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email (optional)</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" />
+                </div>
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Phone (optional)</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 98765 43210" pattern="^[0-9+\-\s()]{7,20}$" />
+                </div>
+                <div class="col-md-6">
+                  <label for="age" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" min="12" max="70" required />
+                  <div class="invalid-feedback">Please enter a valid age (12–70).</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="gender" class="form-label">Gender (optional)</label>
+                  <select class="form-select" id="gender" name="gender">
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="education" class="form-label">Education Level</label>
+                  <select class="form-select" id="education" name="education" required>
+                    <option value="">Select</option>
+                    <option value="10th">10th</option>
+                    <option value="12th">12th</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="graduate">Graduate</option>
+                    <option value="postgraduate">Postgraduate</option>
+                  </select>
+                  <div class="invalid-feedback">Please select your current education level.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="stream" class="form-label">Current Stream / Field of Study</label>
+                  <input type="text" class="form-control" id="stream" name="stream" placeholder="e.g., Science, Commerce, Arts or Major" required />
+                  <div class="invalid-feedback">Please enter your stream/major.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="cgpa" class="form-label">CGPA / Percentage (optional)</label>
+                  <input type="text" class="form-control" id="cgpa" name="cgpa" placeholder="e.g., 8.2 or 78%" />
+                </div>
+                <div class="col-md-6">
+                  <label for="location" class="form-label">Location / Country</label>
+                  <input type="text" class="form-control" id="location" name="location" placeholder="e.g., India" required />
+                  <div class="invalid-feedback">Please enter your location.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Languages (comma separated)</label>
+                  <input type="text" class="form-control" id="languages" name="languages" placeholder="e.g., English, Hindi, Telugu" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">LinkedIn (optional)</label>
+                  <input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/username" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">GitHub (optional)</label>
+                  <input type="url" class="form-control" id="github" name="github" placeholder="https://github.com/username" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Portfolio / Website (optional)</label>
+                  <input type="url" class="form-control" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 🧠 3. Skills and Strengths -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="🧠">3. Skills and Strengths</h2>
-
-            <div class="mb-3">
-              <label for="techSkills" class="form-label">Technical Skills</label>
-              <input type="text" class="form-control" id="techSkills" name="techSkills" placeholder="e.g., coding, design, writing" />
-            </div>
-
-            <div class="mb-3">
-              <label for="softSkills" class="form-label">Soft Skills</label>
-              <input type="text" class="form-control" id="softSkills" name="softSkills" placeholder="e.g., teamwork, leadership" />
-            </div>
-
-            <div class="mb-3">
-              <label for="creativity" class="form-label">Problem-Solving / Creativity Rating (1–5)</label>
-              <input type="number" class="form-control" id="creativity" name="creativity" min="1" max="5" />
-            </div>
-          </div>
-        </div>
-
-        <!-- 🏡 4. Family Background -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="🏡">4. Family Background</h2>
-
-            <div class="mb-3">
-              <label for="parentsOccupation" class="form-label">Parents’ Occupations</label>
-              <input type="text" class="form-control" id="parentsOccupation" name="parentsOccupation" />
-            </div>
-
-            <div class="mb-3">
-              <label for="incomeRange" class="form-label">Family Income Range</label>
-              <input type="text" class="form-control" id="incomeRange" name="incomeRange" placeholder="e.g., ₹5–10 LPA" />
-            </div>
-
-            <div class="mb-3">
-              <label for="familyExpectations" class="form-label">Family Expectations</label>
-              <input type="text" class="form-control" id="familyExpectations" name="familyExpectations" placeholder="e.g., business, govt job" />
-            </div>
-
-            <div class="mb-3">
-              <label for="supportHigherStudies" class="form-label">Support for Higher Studies</label>
-              <select class="form-select" id="supportHigherStudies" name="supportHigherStudies">
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- 💭 5. Life Goals and Preferences -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="💭">5. Life Goals and Preferences</h2>
-
-            <div class="mb-3">
-              <label for="lifeGoal" class="form-label">Your Life Goal</label>
-              <select class="form-select" id="lifeGoal" name="lifeGoal">
-                <option>Stability</option>
-                <option>Fame</option>
-                <option>High Income</option>
-                <option>Social Impact</option>
-                <option>Innovation</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="workLife" class="form-label">Work-Life Preference</label>
-              <select class="form-select" id="workLife" name="workLife">
-                <option>Balanced</option>
-                <option>Fast-paced</option>
-                <option>Flexible</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="relocate" class="form-label">Willingness to Relocate / Work Abroad</label>
-              <select class="form-select" id="relocate" name="relocate">
-                <option>Yes</option>
-                <option>No</option>
-                <option>Maybe</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="lifestyle" class="form-label">Desired Lifestyle</label>
-              <select class="form-select" id="lifestyle" name="lifestyle">
-                <option>Comfortable</option>
-                <option>Luxurious</option>
-                <option>Simple</option>
-              </select>
+          <!-- 🎯 2. Career Interests -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🎯">2. Career Interests</h2>
+              <div class="mb-3">
+                <label for="subjects" class="form-label">Subjects you enjoy the most (select multiple)</label>
+                <select class="form-select" id="subjects" name="subjects" multiple required>
+                  <option value="math">Math</option>
+                  <option value="physics">Physics</option>
+                  <option value="chemistry">Chemistry</option>
+                  <option value="biology">Biology</option>
+                  <option value="economics">Economics</option>
+                  <option value="history">History</option>
+                  <option value="literature">Literature</option>
+                  <option value="art">Art</option>
+                  <option value="computer science">Computer Science</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="form-hint">Hold Ctrl/Cmd to select multiple.</div>
+              </div>
+              <div class="mb-3">
+                <label for="workType" class="form-label">Preferred work type</label>
+                <select class="form-select" id="workType" name="workType">
+                  <option value="">Select</option>
+                  <option value="desk job">Desk Job</option>
+                  <option value="field work">Field Work</option>
+                  <option value="teaching">Teaching</option>
+                  <option value="creative work">Creative Work</option>
+                  <option value="technical">Technical</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="industries" class="form-label">Industries you find interesting (select multiple)</label>
+                <select class="form-select" id="industries" name="industries" multiple>
+                  <option value="technology">Technology</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="finance">Finance</option>
+                  <option value="education">Education</option>
+                  <option value="media">Media</option>
+                  <option value="government">Government</option>
+                  <option value="business">Business</option>
+                  <option value="arts">Arts</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="hobbies" class="form-label">Hobbies / Extracurricular Interests</label>
+                <input type="text" class="form-control" id="hobbies" name="hobbies" placeholder="comma separated" />
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="entrepreneurship" class="form-label">Interest in Entrepreneurship (1–5)</label>
+                  <input type="number" class="form-control" id="entrepreneurship" name="entrepreneurship" min="1" max="5" />
+                </div>
+                <div class="col-md-6">
+                  <label for="creativity" class="form-label">Problem-Solving / Creativity Rating (1–5)</label>
+                  <input type="number" class="form-control" id="creativity" name="creativity" min="1" max="5" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 💼 6. Experience -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="💼">6. Experience</h2>
-
-            <div class="mb-3">
-              <label for="experience" class="form-label">Previous Internships or Jobs</label>
-              <textarea class="form-control" id="experience" name="experience" rows="3"></textarea>
-            </div>
-
-            <div class="mb-3">
-              <label for="projects" class="form-label">Projects Completed</label>
-              <textarea class="form-control" id="projects" name="projects" rows="2"></textarea>
-            </div>
-
-            <div class="mb-3">
-              <label for="achievements" class="form-label">Certifications / Achievements</label>
-              <textarea class="form-control" id="achievements" name="achievements" rows="2"></textarea>
+          <!-- 🧠 3. Skills and Strengths -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🧠">3. Skills and Strengths</h2>
+              <div class="mb-3">
+                <label for="techSkills" class="form-label">Technical Skills</label>
+                <input type="text" class="form-control" id="techSkills" name="techSkills" placeholder="e.g., Java, Python, React, SQL" />
+              </div>
+              <div class="mb-3">
+                <label for="softSkills" class="form-label">Soft Skills</label>
+                <input type="text" class="form-control" id="softSkills" name="softSkills" placeholder="e.g., teamwork, leadership, communication" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- 🧩 7. Personality and Values -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="section-heading" data-emoji="🧩">7. Personality and Values</h2>
-
-            <div class="mb-3">
-              <label for="personality" class="form-label">Personality Type</label>
-              <select class="form-select" id="personality" name="personality">
-                <option>Introvert</option>
-                <option>Extrovert</option>
-                <option>Ambivert</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="values" class="form-label">Values Important to You</label>
-              <input type="text" class="form-control" id="values" name="values" placeholder="e.g., creativity, leadership" />
-            </div>
-
-            <div class="mb-3">
-              <label for="riskLevel" class="form-label">Risk-taking Level</label>
-              <select class="form-select" id="riskLevel" name="riskLevel">
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-              </select>
+          <!-- 🏡 4. Family Background -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🏡">4. Family Background</h2>
+              <div class="mb-3">
+                <label for="parentsOccupation" class="form-label">Parents’ Occupations</label>
+                <input type="text" class="form-control" id="parentsOccupation" name="parentsOccupation" />
+              </div>
+              <div class="mb-3">
+                <label for="incomeRange" class="form-label">Family Income Range</label>
+                <input type="text" class="form-control" id="incomeRange" name="incomeRange" placeholder="e.g., ₹5–10 LPA" />
+              </div>
+              <div class="mb-3">
+                <label for="familyExpectations" class="form-label">Family Expectations</label>
+                <select class="form-select" id="familyExpectations" name="familyExpectations">
+                  <option value="">Select</option>
+                  <option value="business">Business</option>
+                  <option value="government job">Government Job</option>
+                  <option value="higher studies">Higher Studies</option>
+                  <option value="entrepreneurship">Entrepreneurship</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="supportHigherStudies" class="form-label">Support for Higher Studies</label>
+                <select class="form-select" id="supportHigherStudies" name="supportHigherStudies">
+                  <option value="">Select</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
-        <button type="submit" class="btn btn-submit">Get Recommendations</button>
-      </form>
-  </div>
+          <!-- 💭 5. Life Goals and Preferences -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="💭">5. Life Goals and Preferences</h2>
+              <div class="mb-3">
+                <label for="lifeGoal" class="form-label">Your Life Goal</label>
+                <select class="form-select" id="lifeGoal" name="lifeGoal">
+                  <option value="">Select</option>
+                  <option value="stability">Stability</option>
+                  <option value="fame">Fame</option>
+                  <option value="high income">High Income</option>
+                  <option value="social">Social Impact</option>
+                  <option value="innovation">Innovation</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="workLife" class="form-label">Work-Life Preference</label>
+                <select class="form-select" id="workLife" name="workLife">
+                  <option value="">Select</option>
+                  <option value="balanced">Balanced</option>
+                  <option value="fast-paced">Fast-paced</option>
+                  <option value="flexible">Flexible</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="relocate" class="form-label">Willingness to Relocate / Work Abroad</label>
+                <select class="form-select" id="relocate" name="relocate">
+                  <option value="">Select</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                  <option>Maybe</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="lifestyle" class="form-label">Desired Lifestyle</label>
+                <select class="form-select" id="lifestyle" name="lifestyle">
+                  <option value="">Select</option>
+                  <option value="comfortable">Comfortable</option>
+                  <option value="luxurious">Luxurious</option>
+                  <option value="simple">Simple</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 💼 6. Experience -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="💼">6. Experience</h2>
+
+              <div class="mb-3">
+                <label class="form-label d-block">Do you have any internship or job experience?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input toggle-radio" type="radio" name="hasExperience" id="hasExperienceYes" value="yes" data-target="#experienceFields" />
+                  <label class="form-check-label" for="hasExperienceYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input toggle-radio" type="radio" name="hasExperience" id="hasExperienceNo" value="no" data-target="#experienceFields" checked />
+                  <label class="form-check-label" for="hasExperienceNo">No</label>
+                </div>
+              </div>
+
+              <div id="experienceFields" class="hidden">
+                <div id="experiencesCollection" data-collection="experiences">
+                  <!-- Entries will go here -->
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-add="experiences">+ Add Experience</button>
+                <div class="form-hint mt-2">Include role, company, duration, responsibilities, and tools/tech used.</div>
+
+                <template id="experienceTemplate">
+                  <div class="entry-card">
+                    <div class="row g-2">
+                      <div class="col-md-4">
+                        <label class="form-label">Role / Title</label>
+                        <input type="text" class="form-control" name="__name__[role]" data-required-if-visible="true" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label">Company / Org</label>
+                        <input type="text" class="form-control" name="__name__[company]" data-required-if-visible="true" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label">Duration</label>
+                        <input type="text" class="form-control" name="__name__[duration]" placeholder="e.g., 3 months" />
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Responsibilities / Achievements</label>
+                        <textarea class="form-control" rows="2" name="__name__[description]"></textarea>
+                      </div>
+                      <div class="col-md-8">
+                        <label class="form-label">Technologies / Tools (comma separated)</label>
+                        <input type="text" class="form-control" name="__name__[tech]" placeholder="e.g., React, Node.js, SQL" />
+                      </div>
+                      <div class="col-md-4 d-flex align-items-end">
+                        <button type="button" class="btn btn-link btn-link-danger p-0" data-remove-entry>Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- 🧪 7. Projects -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🧪">7. Projects</h2>
+
+              <div class="mb-3">
+                <label class="form-label d-block">Have you completed any projects?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input toggle-radio" type="radio" name="hasProjects" id="hasProjectsYes" value="yes" data-target="#projectsFields" />
+                  <label class="form-check-label" for="hasProjectsYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input toggle-radio" type="radio" name="hasProjects" id="hasProjectsNo" value="no" data-target="#projectsFields" checked />
+                  <label class="form-check-label" for="hasProjectsNo">No</label>
+                </div>
+              </div>
+
+              <div id="projectsFields" class="hidden">
+                <div id="projectsCollection" data-collection="projects">
+                  <!-- Entries go here -->
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-add="projects">+ Add Project</button>
+                <div class="form-hint mt-2">Add links if available (GitHub, live demo).</div>
+
+                <template id="projectTemplate">
+                  <div class="entry-card">
+                    <div class="row g-2">
+                      <div class="col-md-4">
+                        <label class="form-label">Project Name</label>
+                        <input type="text" class="form-control" name="__name__[name]" data-required-if-visible="true" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label">Technologies</label>
+                        <input type="text" class="form-control" name="__name__[tech]" placeholder="e.g., Python, ML, Flask" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label">Link (optional)</label>
+                        <input type="url" class="form-control" name="__name__[link]" placeholder="https://..." />
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" rows="2" name="__name__[description]"></textarea>
+                      </div>
+                      <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-link btn-link-danger p-0" data-remove-entry>Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- 🏅 8. Certifications / Achievements -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🏅">8. Certifications / Achievements</h2>
+
+              <div class="mb-3">
+                <label class="form-label d-block">Do you have any certifications or notable achievements?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input toggle-radio" type="radio" name="hasCertifications" id="hasCertificationsYes" value="yes" data-target="#certsFields" />
+                  <label class="form-check-label" for="hasCertificationsYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input toggle-radio" type="radio" name="hasCertifications" id="hasCertificationsNo" value="no" data-target="#certsFields" checked />
+                  <label class="form-check-label" for="hasCertificationsNo">No</label>
+                </div>
+              </div>
+
+              <div id="certsFields" class="hidden">
+                <div id="certsCollection" data-collection="certifications">
+                  <!-- Entries go here -->
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-add="certifications">+ Add Certification</button>
+
+                <template id="certTemplate">
+                  <div class="entry-card">
+                    <div class="row g-2">
+                      <div class="col-md-4">
+                        <label class="form-label">Certification Name</label>
+                        <input type="text" class="form-control" name="__name__[name]" data-required-if-visible="true" placeholder="e.g., AWS CCP" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label">Issuer</label>
+                        <input type="text" class="form-control" name="__name__[issuer]" placeholder="e.g., AWS, Google" />
+                      </div>
+                      <div class="col-md-2">
+                        <label class="form-label">Year</label>
+                        <input type="number" class="form-control" name="__name__[year]" min="2000" max="2100" />
+                      </div>
+                      <div class="col-md-2">
+                        <label class="form-label">Link (opt.)</label>
+                        <input type="url" class="form-control" name="__name__[url]" placeholder="https://..." />
+                      </div>
+                      <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-link btn-link-danger p-0" data-remove-entry>Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+
+                <div class="mt-3">
+                  <label for="achievements" class="form-label">Other Achievements (optional)</label>
+                  <textarea class="form-control" id="achievements" name="achievements" rows="2" placeholder="Awards, hackathons, publications, leadership roles..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 🧩 9. Personality and Values -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="section-heading" data-emoji="🧩">9. Personality and Values</h2>
+              <div class="mb-3">
+                <label for="personality" class="form-label">Personality Type</label>
+                <select class="form-select" id="personality" name="personality">
+                  <option value="">Select</option>
+                  <option value="introvert">Introvert</option>
+                  <option value="extrovert">Extrovert</option>
+                  <option value="ambivert">Ambivert</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="values" class="form-label">Values Important to You</label>
+                <input type="text" class="form-control" id="values" name="values" placeholder="e.g., creativity, leadership, impact" />
+              </div>
+              <div class="mb-3">
+                <label for="riskLevel" class="form-label">Risk-taking Level</label>
+                <select class="form-select" id="riskLevel" name="riskLevel">
+                  <option value="">Select</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-submit">Get Recommendations</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
-</div>
+
+<script>
+  // Bootstrap validation (no jQuery)
+  (() => {
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+
+  // Toggle sections based on yes/no radios
+  function updateToggle(radio) {
+    const targetSel = radio.getAttribute('data-target');
+    if (!targetSel) return;
+    const container = document.querySelector(targetSel);
+    const isYes = radio.value === 'yes' && radio.checked;
+    if (container) {
+      container.classList.toggle('hidden', !isYes);
+      // toggle required if visible
+      container.querySelectorAll('[data-required-if-visible="true"]').forEach((el) => {
+        if (isYes) el.setAttribute('required', 'required');
+        else el.removeAttribute('required');
+      });
+      // If becoming visible and empty, add one default entry
+      if (isYes && container.querySelectorAll('.entry-card').length === 0) {
+        const addBtn = container.parentElement.querySelector('[data-add]');
+        if (addBtn) addBtn.click();
+      }
+      // If hiding, remove all entries to avoid sending noise
+      if (!isYes) {
+        container.querySelectorAll('.entry-card').forEach((card) => card.remove());
+      }
+    }
+  }
+
+  document.querySelectorAll('.toggle-radio').forEach((radio) => {
+    radio.addEventListener('change', (e) => updateToggle(e.target));
+    // initialize on load
+    if (radio.checked) updateToggle(radio);
+  });
+
+  // Dynamic collections (experiences, projects, certifications)
+  function addEntry(collectionName) {
+    const collection = document.querySelector(`[data-collection="${collectionName}"]`) || document.getElementById(collectionName + 'Collection');
+    const template = document.getElementById(collectionName.slice(0, -1) + 'Template') || document.getElementById(collectionName + 'Template');
+    if (!collection || !template) return;
+
+    const index = collection.querySelectorAll('.entry-card').length;
+    const clone = template.content.cloneNode(true);
+    // Replace __name__ placeholders with collectionName[index]
+    clone.querySelectorAll('[name]').forEach((input) => {
+      const name = input.getAttribute('name');
+      input.setAttribute('name', `${collectionName}[${index}]` + name.replace('__name__', ''));
+    });
+    // Attach remove handler
+    clone.querySelectorAll('[data-remove-entry]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        btn.closest('.entry-card').remove();
+        // re-index names to keep arrays clean
+        reindexCollection(collectionName);
+      });
+    });
+
+    collection.appendChild(clone);
+  }
+
+  function reindexCollection(collectionName) {
+    const collection = document.querySelector(`[data-collection="${collectionName}"]`);
+    if (!collection) return;
+    const cards = Array.from(collection.querySelectorAll('.entry-card'));
+    cards.forEach((card, idx) => {
+      card.querySelectorAll('[name]').forEach((el) => {
+        const field = el.getAttribute('name').split(']').pop(); // like [role], [company]...
+        el.setAttribute('name', `${collectionName}[${idx}]${field}`);
+      });
+    });
+  }
+
+  document.querySelectorAll('[data-add]').forEach((btn) => {
+    btn.addEventListener('click', () => addEntry(btn.getAttribute('data-add')));
+  });
+</script>
 
 <%- include('partials/footer') %>
