@@ -36,8 +36,8 @@ border: 1px solid #334155;
 
               <div class="row g-3">
                 <div class="col-md-6">
-                  <label for="name" class="form-label">Full Name (optional)</label>
-                  <input type="text" class="form-control" id="name" name="name" />
+                  <label for="name" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="name" name="name" required/>
                 </div>
                 <div class="col-md-6">
                   <label for="email" class="form-label">Email (optional)</label>
@@ -54,8 +54,8 @@ border: 1px solid #334155;
                 </div>
                 <div class="col-md-6">
                   <label for="gender" class="form-label">Gender (optional)</label>
-                  <select class="form-select" id="gender" name="gender">
-                    <option value="">Select</option>
+                  <select class="form-select" id="gender" name="gender" required>
+                    <option value="" hidden>Select</option>
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
@@ -65,7 +65,7 @@ border: 1px solid #334155;
                 <div class="col-md-6">
                   <label for="education" class="form-label">Education Level</label>
                   <select class="form-select" id="education" name="education" required>
-                    <option value="">Select</option>
+                    <option value="" hidden>Select</option>
                     <option value="10th">10th</option>
                     <option value="12th">12th</option>
                     <option value="undergraduate">Undergraduate</option>
@@ -90,7 +90,7 @@ border: 1px solid #334155;
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Languages (comma separated)</label>
-                  <input type="text" class="form-control" id="languages" name="languages" placeholder="e.g., English, Hindi, Telugu" />
+                  <input type="text" class="form-control" id="languages" name="languages" placeholder="e.g., English, Hindi, Telugu" required/>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">LinkedIn (optional)</label>
@@ -114,7 +114,7 @@ border: 1px solid #334155;
               <h2 class="section-heading" data-emoji="🎯">2. Career Interests</h2>
               <div class="mb-3">
                 <label for="subjects" class="form-label">Subjects you enjoy the most (select multiple)</label>
-                <select class="form-select" id="subjects" name="subjects" multiple required>
+                <select class="form-select" id="subjects" required name="subjects" multiple>
                   <option value="math">Math</option>
                   <option value="physics">Physics</option>
                   <option value="chemistry">Chemistry</option>
@@ -130,8 +130,8 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="workType" class="form-label">Preferred work type</label>
-                <select class="form-select" id="workType" name="workType">
-                  <option value="">Select</option>
+                <select class="form-select" id="workType" name="workType" required>
+                  <option value="" hidden>Select</option>
                   <option value="desk job">Desk Job</option>
                   <option value="field work">Field Work</option>
                   <option value="teaching">Teaching</option>
@@ -141,7 +141,8 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="industries" class="form-label">Industries you find interesting (select multiple)</label>
-                <select class="form-select" id="industries" name="industries" multiple>
+                <select class="form-select" id="industries" name="industries" multiple required>
+                  <option value="" hidden>Select</option>
                   <option value="technology">Technology</option>
                   <option value="healthcare">Healthcare</option>
                   <option value="finance">Finance</option>
@@ -155,16 +156,16 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="hobbies" class="form-label">Hobbies / Extracurricular Interests</label>
-                <input type="text" class="form-control" id="hobbies" name="hobbies" placeholder="comma separated" />
+                <input type="text" class="form-control" id="hobbies" name="hobbies" placeholder="comma separated" required/>
               </div>
               <div class="row g-3">
                 <div class="col-md-6">
                   <label for="entrepreneurship" class="form-label">Interest in Entrepreneurship (1–5)</label>
-                  <input type="number" class="form-control" id="entrepreneurship" name="entrepreneurship" min="1" max="5" />
+                  <input type="number" class="form-control" id="entrepreneurship" name="entrepreneurship" min="1" max="5" required/>
                 </div>
                 <div class="col-md-6">
                   <label for="creativity" class="form-label">Problem-Solving / Creativity Rating (1–5)</label>
-                  <input type="number" class="form-control" id="creativity" name="creativity" min="1" max="5" />
+                  <input type="number" class="form-control" id="creativity" name="creativity" min="1" max="5" required/>
                 </div>
               </div>
             </div>
@@ -176,11 +177,11 @@ border: 1px solid #334155;
               <h2 class="section-heading" data-emoji="🧠">3. Skills and Strengths</h2>
               <div class="mb-3">
                 <label for="techSkills" class="form-label">Technical Skills</label>
-                <input type="text" class="form-control" id="techSkills" name="techSkills" placeholder="e.g., Java, Python, React, SQL" />
+                <input type="text" class="form-control" id="techSkills" name="techSkills" placeholder="e.g., Java, Python, React, SQL if none then write none" required/>
               </div>
               <div class="mb-3">
                 <label for="softSkills" class="form-label">Soft Skills</label>
-                <input type="text" class="form-control" id="softSkills" name="softSkills" placeholder="e.g., teamwork, leadership, communication" />
+                <input type="text" class="form-control" id="softSkills" name="softSkills" placeholder="e.g., teamwork, leadership, communication" required/>
               </div>
             </div>
           </div>
@@ -188,19 +189,19 @@ border: 1px solid #334155;
           <!-- 🏡 4. Family Background -->
           <div class="card mb-4">
             <div class="card-body">
-              <h2 class="section-heading" data-emoji="🏡">4. Family Background</h2>
+              <h2 class="section-heading" data-emoji="🏡">4. Family Background </h2>
               <div class="mb-3">
                 <label for="parentsOccupation" class="form-label">Parents’ Occupations</label>
-                <input type="text" class="form-control" id="parentsOccupation" name="parentsOccupation" />
+                <input type="text" class="form-control" id="parentsOccupation" name="parentsOccupation" required/>
               </div>
               <div class="mb-3">
                 <label for="incomeRange" class="form-label">Family Income Range</label>
-                <input type="text" class="form-control" id="incomeRange" name="incomeRange" placeholder="e.g., ₹5–10 LPA" />
+                <input type="text" class="form-control" id="incomeRange" name="incomeRange" placeholder="e.g., ₹5–10 LPA" required/>
               </div>
               <div class="mb-3">
                 <label for="familyExpectations" class="form-label">Family Expectations</label>
-                <select class="form-select" id="familyExpectations" name="familyExpectations">
-                  <option value="">Select</option>
+                <select class="form-select" id="familyExpectations" name="familyExpectations" required>
+                  <option value="" hidden>Select</option>
                   <option value="business">Business</option>
                   <option value="government job">Government Job</option>
                   <option value="higher studies">Higher Studies</option>
@@ -210,8 +211,8 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="supportHigherStudies" class="form-label">Support for Higher Studies</label>
-                <select class="form-select" id="supportHigherStudies" name="supportHigherStudies">
-                  <option value="">Select</option>
+                <select class="form-select" id="supportHigherStudies" name="supportHigherStudies" required>
+                  <option value="" hidden>Select</option>
                   <option>Yes</option>
                   <option>No</option>
                 </select>
@@ -225,8 +226,8 @@ border: 1px solid #334155;
               <h2 class="section-heading" data-emoji="💭">5. Life Goals and Preferences</h2>
               <div class="mb-3">
                 <label for="lifeGoal" class="form-label">Your Life Goal</label>
-                <select class="form-select" id="lifeGoal" name="lifeGoal">
-                  <option value="">Select</option>
+                <select class="form-select" id="lifeGoal" name="lifeGoal" required>
+                  <option value="" hidden>Select</option>
                   <option value="stability">Stability</option>
                   <option value="fame">Fame</option>
                   <option value="high income">High Income</option>
@@ -236,8 +237,8 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="workLife" class="form-label">Work-Life Preference</label>
-                <select class="form-select" id="workLife" name="workLife">
-                  <option value="">Select</option>
+                <select class="form-select" id="workLife" name="workLife" required>
+                  <option value="" hidden>Select</option>
                   <option value="balanced">Balanced</option>
                   <option value="fast-paced">Fast-paced</option>
                   <option value="flexible">Flexible</option>
@@ -245,8 +246,8 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="relocate" class="form-label">Willingness to Relocate / Work Abroad</label>
-                <select class="form-select" id="relocate" name="relocate">
-                  <option value="">Select</option>
+                <select class="form-select" id="relocate" name="relocate" required>
+                  <option value="" hidden>Select</option>
                   <option>Yes</option>
                   <option>No</option>
                   <option>Maybe</option>
@@ -254,8 +255,8 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="lifestyle" class="form-label">Desired Lifestyle</label>
-                <select class="form-select" id="lifestyle" name="lifestyle">
-                  <option value="">Select</option>
+                <select class="form-select" id="lifestyle" name="lifestyle" required>
+                  <option value="" hidden>Select</option>
                   <option value="comfortable">Comfortable</option>
                   <option value="luxurious">Luxurious</option>
                   <option value="simple">Simple</option>
@@ -437,8 +438,8 @@ border: 1px solid #334155;
               <h2 class="section-heading" data-emoji="🧩">9. Personality and Values</h2>
               <div class="mb-3">
                 <label for="personality" class="form-label">Personality Type</label>
-                <select class="form-select" id="personality" name="personality">
-                  <option value="">Select</option>
+                <select class="form-select" id="personality" name="personality" required>
+                  <option value="" hidden>Select</option>
                   <option value="introvert">Introvert</option>
                   <option value="extrovert">Extrovert</option>
                   <option value="ambivert">Ambivert</option>
@@ -446,12 +447,12 @@ border: 1px solid #334155;
               </div>
               <div class="mb-3">
                 <label for="values" class="form-label">Values Important to You</label>
-                <input type="text" class="form-control" id="values" name="values" placeholder="e.g., creativity, leadership, impact" />
+                <input type="text" class="form-control" id="values" name="values" placeholder="e.g., creativity, leadership, impact" required/>
               </div>
               <div class="mb-3">
                 <label for="riskLevel" class="form-label">Risk-taking Level</label>
-                <select class="form-select" id="riskLevel" name="riskLevel">
-                  <option value="">Select</option>
+                <select class="form-select" id="riskLevel" name="riskLevel" required>
+                  <option value="" hidden>Select</option>
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
                   <option value="high">High</option>
