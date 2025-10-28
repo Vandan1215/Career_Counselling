@@ -1,8 +1,8 @@
 // services/recommendationService.js
-
-// ----------------------------------------
 // 1️⃣ Normalize and clean user profile data
-// ----------------------------------------
+
+
+
 function normalizeProfile(data) {
   const lower = (s) => (typeof s === "string" ? s.toLowerCase().trim() : "");
   const csv = (s) => (typeof s === "string" ? s.split(",").map(x => x.trim().toLowerCase()).filter(Boolean) : []);
